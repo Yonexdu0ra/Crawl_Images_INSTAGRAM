@@ -1,66 +1,59 @@
 <style>
-        body {
-            margin: 0 auto;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    body {
+        margin: 0 auto;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
-        .form {
-            height: 500px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    .form {
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-        .control {
-            /* width: 100%; */
-            display: flex;
-            flex-direction: column wrap;
-        }
+    .control {
+        /* width: 100%; */
+        display: flex;
+        flex-direction: column wrap;
+    }
 
-        .input {
-            width: 100%;
-        }
-    </style>`
+    .input {
+        width: 100%;
+    }
+</style>`
 <div class="form">
     <div class="control">
         <label for="url">URL Instagram User</label>
         <input type="text" name="url" id="url" class="input" />
         <button id="submit" class="btn" disabled>Submit</button>
+        <div class="notification"></div>
     </div>
 </div>
 <script>
     'use strict';
-    (() => {
-        window.addEventListener('resize', () => {
-            const isHeight = document.querySelector(".form")
-            isHeight.style.height = window.innerHeight + 'px'
-        })
+   /* (async (ws) => {
+        console.log(ws)
         const input = document.querySelector('#url')
-        const btn = document.querySelector("#submit")
-        input.addEventListener('input', e => {
-            if (e.target.value != null && e.target.value.trim() != '') {
-                btn.disabled = false
-            } else {
-                btn.disabled = true
-            }
-        })
-        btn.addEventListener('click', async () => {
-            btn.disabled = true
-            fetch(window.location.href, {
-                method: 'POST',
-                headers: {
-                    'content-type': 'application/json',
-                },
-                body: JSON.stringify({
-                    url: input.value
-                })
+        const btn = document.querySelector('#submit')
+        const notification = document.querySelector('.notification')
+        ws.addEventListener('open', e => {
+            console.log(`connection established`)
+            input.addEventListener('input', (e) => {
+                const value = e.target.value
+                (value == null || value?.trim() == '') ? btn.disabled = true : btn.disabled = false
             })
-                .then(res => res.json())
-                .then(res => {
-                    console.log(res)
-                    input.value = null
-                })
+            ws.addEventListener('message', ({ data }) => {
+                if(data.results) {
+                    notification.classList.add('success')
+                    notification.textContent = data.content
+                } else {
+                    notification.classList.add('error')
+                }
+            })
+            ws.addEventListener('error', e => {
+                console.log('error')
+            })
         })
-    })()
+    })(new WebSocket(`ws://${window.location.host}`) */
 </script>
