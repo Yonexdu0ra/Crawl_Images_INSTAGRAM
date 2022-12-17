@@ -16,9 +16,9 @@ app.engine('.hbs', engine({ extname: '.hbs'}));
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname,'views'));
 
-wss.on('connection', (ws) => {
+// wss.on('connection', (ws) => {
     
-})
+// })
 routes(app)
 
 server.listen(PORT, () => {
