@@ -17,7 +17,9 @@ console.log(process.env.USERNAME, process.env.PASSWORD);
     await page.focus('input[name="password"]')
     await page.keyboard.type(process.env.PASSWORD)
     await page.click('button[type="submit"]')
-    // await page.waitForNavigation()
-    // await page.close()
+    await page.waitForNavigation({
+        
+    })
+    await page.close()
 })()
 
