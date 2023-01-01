@@ -22,5 +22,5 @@ app.set('views', path.join(__dirname,'views'));
 routes(app)
 
 server.listen(PORT, () => {
-    console.log(`server runing on: http://localhost:${PORT}`, process.env.USERNAME)
+    console.log(`server runing on: http://localhost:${PORT}`)
 })
